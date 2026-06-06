@@ -46,6 +46,10 @@ V1 MVP
 - [ ] AI 图片生成
 - [ ] AI 语音证据
 
+## 项目文档
+
+- [第十一章：图片生成系统（Image Prompt System）](docs/11-image-prompt-system.md)
+
 ## Slogan
 
 不要试图寻找暗线。
