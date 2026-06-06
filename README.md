@@ -49,6 +49,7 @@ V1 MVP
 ## 项目文档
 
 - [第十一章：图片生成系统（Image Prompt System）](docs/11-image-prompt-system.md)
+- [第十二章：语音证据系统（Audio Evidence System）](docs/12-audio-evidence-system.md)
 
 ## Slogan
 
