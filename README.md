@@ -50,6 +50,7 @@ V1 MVP
 
 - [第十一章：图片生成系统（Image Prompt System）](docs/11-image-prompt-system.md)
 - [第十二章：语音证据系统（Audio Evidence System）](docs/12-audio-evidence-system.md)
+- [第十三章：档案系统（Archive System）](docs/case-engine/13-archive-system.md)
 
 ## Slogan
 
