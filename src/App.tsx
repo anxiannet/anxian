@@ -4,6 +4,8 @@ import { ChatInvestigation, type InvestigationResult } from "./components/ChatIn
 import { ClueBoard } from "./components/ClueBoard";
 import { Hero } from "./components/Hero";
 import { PlayerCard } from "./components/PlayerCard";
+import { CaseRunner } from "./components/case/CaseRunner";
+import { getCaseBySlug } from "./data/cases";
 import type { StatKey } from "./data/demoCase";
 
 type AppView = "landing" | "investigation" | "archive";
@@ -21,6 +23,8 @@ function createInitialStats(): Record<StatKey, number> {
 }
 
 function App() {
+  const caseMatch = window.location.pathname.match(/^\/(?:demo|cases)\/([^/]+)\/?$/);
+  const routedCase = caseMatch ? getCaseBySlug(caseMatch[1].toLowerCase()) : undefined;
   const [view, setView] = useState<AppView>("landing");
   const [stats, setStats] = useState(createInitialStats);
   const [foundClueIds, setFoundClueIds] = useState<string[]>([]);
@@ -57,6 +61,10 @@ function App() {
   };
 
   const investigationKey = useMemo(() => startedAt, [startedAt]);
+
+  if (routedCase) {
+    return <CaseRunner caseData={routedCase} />;
+  }
 
   if (view === "landing") {
     return <Hero onStart={startInvestigation} />;

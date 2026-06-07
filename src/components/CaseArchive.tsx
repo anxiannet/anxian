@@ -112,6 +112,10 @@ export function CaseArchive({
             <button className="text-button" onClick={onReplay}>
               ↻ 重新调查本案
             </button>
+            <a className="next-case-link" href="/demo/wh-0002">
+              <span>下一案件 / WH-0002</span>
+              <strong>不存在的第七码头柜 →</strong>
+            </a>
           </article>
 
           <aside className="archive-side">
