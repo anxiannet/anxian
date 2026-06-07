@@ -16,11 +16,14 @@ const roleNames = {
 export function ChatScene({ scene, onChoice }: ChatSceneProps) {
   return (
     <section className="runner-scene chat-scene">
+      {scene.imageSrc && (
+        <img className="chat-evidence-image" src={scene.imageSrc} alt={`${scene.sceneName} 场景`} />
+      )}
       <div className="phone-shell">
         <header className="phone-header">
-          <span>23:46</span>
+          <span>{scene.time}</span>
           <strong>{scene.sceneName}</strong>
-          <span>LTE</span>
+          <span>暗线</span>
         </header>
         <div className="phone-messages">
           {scene.npcMessages.map((message) => (

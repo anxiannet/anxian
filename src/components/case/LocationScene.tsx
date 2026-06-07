@@ -48,10 +48,13 @@ export function LocationScene({ scene, onAction, onChoice }: LocationSceneProps)
         {scene.availableActions
           .filter((action) => inspected.includes(action.actionId))
           .map((action) => (
-            <p key={action.actionId}>
-              <span>调查记录</span>
-              {action.description}
-            </p>
+            <div className="location-result" key={action.actionId}>
+              {action.imageSrc && <img src={action.imageSrc} alt={action.label} />}
+              <p>
+                <span>调查记录</span>
+                {action.description}
+              </p>
+            </div>
           ))}
       </div>
       <AudioManager label={scene.ambientSfxPrompt.split("，")[0]} prompt={scene.ambientSfxPrompt} />

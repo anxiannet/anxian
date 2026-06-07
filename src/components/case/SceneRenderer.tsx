@@ -22,6 +22,7 @@ type SceneRendererProps = {
   clues: CaseClue[];
   foundClueIds: string[];
   flags: string[];
+  elapsedSeconds: number;
   onAction: (action: CaseAction) => void;
   onChoice: (choice: CaseChoice) => void;
   onEvidence: (evidence: EvidenceDisplay) => void;
@@ -74,6 +75,7 @@ export function SceneRenderer(props: SceneRendererProps) {
         scene={scene}
         ending={props.ending}
         foundClueIds={props.foundClueIds}
+        elapsedSeconds={props.elapsedSeconds}
         onReplay={props.onReplay}
       />
     );

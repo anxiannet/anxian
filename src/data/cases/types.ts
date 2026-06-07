@@ -44,6 +44,10 @@ export type CaseClue = {
   importance: number;
   credibility: number;
   evidencePrompt: string;
+  summary?: string;
+  timestamp?: string;
+  imagePrompt?: string;
+  audioCue?: string;
   voicePrompt?: string;
   videoPrompt?: string;
 };
@@ -52,6 +56,7 @@ export type CaseAction = {
   actionId: string;
   label: string;
   description: string;
+  imageSrc?: string;
   clueIds?: string[];
   addFlags?: string[];
   nextSceneId?: string;
@@ -142,6 +147,13 @@ export type CaseEnding = {
   rating: string;
   rank: "C" | "A" | "S";
   unlockedArchive: string;
+  imageSrc?: string;
+};
+
+export type CaseAudioTrack = {
+  id: string;
+  name: string;
+  prompt?: string;
 };
 
 export type CaseData = {
@@ -195,6 +207,9 @@ export type CaseData = {
     openQuestions: string[];
     nextCaseHook: string;
     investigatorNote: string;
+    nextCaseId?: string;
+    nextCaseTitle?: string;
+    nextCaseStatus?: string;
   };
   assets: {
     coverImageSrc?: string;
@@ -205,5 +220,18 @@ export type CaseData = {
     globalSfxPrompt: string;
     voiceEvidencePrompt: string;
     teaserVideoPrompt: string;
+    imagePrompts?: Array<{
+      id: string;
+      name: string;
+      prompt: string;
+    }>;
+  };
+  seo?: {
+    title: string;
+    description: string;
+  };
+  audio?: {
+    bgm: CaseAudioTrack[];
+    sfx: CaseAudioTrack[];
   };
 };

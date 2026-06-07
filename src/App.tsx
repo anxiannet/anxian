@@ -3,10 +3,12 @@ import { CaseArchive } from "./components/CaseArchive";
 import { ChatInvestigation, type InvestigationResult } from "./components/ChatInvestigation";
 import { ClueBoard } from "./components/ClueBoard";
 import { Hero } from "./components/Hero";
+import { MobaDemo } from "./components/moba/MobaDemo";
 import { PlayerCard } from "./components/PlayerCard";
 import { CaseRunner } from "./components/case/CaseRunner";
 import { getCaseBySlug } from "./data/cases";
 import type { StatKey } from "./data/demoCase";
+import { Case240RoomDemo } from "./demos/case-240-room/Case240RoomDemo";
 
 type AppView = "landing" | "investigation" | "archive";
 
@@ -22,9 +24,23 @@ function createInitialStats(): Record<StatKey, number> {
   );
 }
 
-function App() {
+function RegisterPlaceholder() {
+  return (
+    <main className="register-placeholder">
+      <span className="brand-mark" />
+      <p>ANXIAN NETWORK</p>
+      <h1>注册节点准备中</h1>
+      <p>当前 Demo 暂不要求登录。你的案件档案仍保留在本次会话中。</p>
+      <a className="primary-button" href="/">返回暗线</a>
+    </main>
+  );
+}
+
+function MainApp() {
   const caseMatch = window.location.pathname.match(/^\/(?:demo|cases)\/([^/]+)\/?$/);
   const routedCase = caseMatch ? getCaseBySlug(caseMatch[1].toLowerCase()) : undefined;
+  const isMobaDemo = caseMatch?.[1].toLowerCase() === "moba-0001";
+  const isCase240Room = caseMatch?.[1].toLowerCase() === "case-240-room";
   const [view, setView] = useState<AppView>("landing");
   const [stats, setStats] = useState(createInitialStats);
   const [foundClueIds, setFoundClueIds] = useState<string[]>([]);
@@ -61,6 +77,14 @@ function App() {
   };
 
   const investigationKey = useMemo(() => startedAt, [startedAt]);
+
+  if (isCase240Room) {
+    return <Case240RoomDemo />;
+  }
+
+  if (isMobaDemo) {
+    return <MobaDemo />;
+  }
 
   if (routedCase) {
     return <CaseRunner caseData={routedCase} />;
@@ -117,6 +141,10 @@ function App() {
       </div>
     </main>
   );
+}
+
+function App() {
+  return window.location.pathname === "/register" ? <RegisterPlaceholder /> : <MainApp />;
 }
 
 export default App;

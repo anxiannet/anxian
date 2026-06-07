@@ -5,6 +5,7 @@ type GateState = "checking" | "online" | "offline";
 
 export function DatabaseGate() {
   const [state, setState] = useState<GateState>("checking");
+  const [qrUnavailable, setQrUnavailable] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -64,10 +65,15 @@ export function DatabaseGate() {
           <p>你可以先加入微信群获取测试资格。</p>
           <div className="qr-card">
             <div className="qr-frame">
-              <img
-                src="/images/wechat-group-qr.jpg"
-                alt="暗线网络微信群二维码"
-              />
+              {qrUnavailable ? (
+                <span className="qr-placeholder">二维码待更新</span>
+              ) : (
+                <img
+                  src="/images/wechat-group-qr.jpg"
+                  alt="暗线网络微信群二维码"
+                  onError={() => setQrUnavailable(true)}
+                />
+              )}
             </div>
             <div>
               <small>WECHAT GROUP</small>

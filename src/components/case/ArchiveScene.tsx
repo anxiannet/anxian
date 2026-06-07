@@ -6,13 +6,21 @@ type ArchiveSceneProps = {
   scene: CaseScene;
   ending: CaseEnding;
   foundClueIds: string[];
+  elapsedSeconds: number;
   onReplay: () => void;
 };
+
+function formatDuration(seconds: number) {
+  const minutes = Math.floor(seconds / 60);
+  const rest = seconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(rest).padStart(2, "0")}`;
+}
 
 export function ArchiveScene({
   caseData,
   ending,
   foundClueIds,
+  elapsedSeconds,
   onReplay,
 }: ArchiveSceneProps) {
   const completion = Math.round((foundClueIds.length / caseData.clues.length) * 100);
@@ -37,6 +45,10 @@ export function ArchiveScene({
         </header>
         <div className="archive-score-row">
           <div>
+            <small>调查用时</small>
+            <strong>{formatDuration(elapsedSeconds)}</strong>
+          </div>
+          <div>
             <small>调查评级</small>
             <strong>{ending.rating}</strong>
           </div>
@@ -54,8 +66,14 @@ export function ArchiveScene({
           <p>{ending.archiveConclusion}</p>
           <small>调查员备注</small>
           <p>“{caseData.archive.investigatorNote}”</p>
-          <small>下一案件钩子</small>
+          <small>下一案件预告</small>
           <p className="next-hook">{caseData.archive.nextCaseHook}</p>
+          {caseData.archive.nextCaseId && (
+            <p className="next-case-status">
+              {caseData.archive.nextCaseId}《{caseData.archive.nextCaseTitle}》
+              <span>{caseData.archive.nextCaseStatus}</span>
+            </p>
+          )}
         </div>
         <div className="archive-actions">
           <button className="secondary-case-button" onClick={onReplay}>重新调查</button>
