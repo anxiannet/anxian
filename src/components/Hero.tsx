@@ -1,6 +1,31 @@
+import { caseMeta as currentCaseMeta } from "../data/demoCase";
+import { casesBySlug } from "../data/cases";
+import { caseMeta as room240Meta } from "../data/cases/case-240-room";
+
 type HeroProps = {
   onStart: () => void;
 };
+
+const caseDemos = [
+  {
+    id: "CASE 001",
+    title: currentCaseMeta.title,
+    href: "/",
+    meta: "当前案件",
+  },
+  ...Object.values(casesBySlug).map(({ meta }) => ({
+    id: meta.caseId,
+    title: meta.title,
+    href: `/demo/${meta.slug}`,
+    meta: `${meta.district} / ${meta.duration}`,
+  })),
+  {
+    id: room240Meta.caseId,
+    title: room240Meta.title,
+    href: `/demo/${room240Meta.slug}`,
+    meta: `${room240Meta.district} / ${room240Meta.duration}`,
+  },
+];
 
 export function Hero({ onStart }: HeroProps) {
   return (
@@ -46,6 +71,30 @@ export function Hero({ onStart }: HeroProps) {
           <span>约 10 分钟</span>
           <span>单人案件</span>
         </div>
+        <section className="demo-directory" aria-labelledby="demo-directory-title">
+          <div className="demo-directory-heading">
+            <span id="demo-directory-title">案件 DEMO</span>
+            <small>{caseDemos.length} CASES ONLINE</small>
+          </div>
+          <div className="demo-links">
+            {caseDemos.map((demo, index) => (
+              <a
+                className={`demo-link${index === 0 ? " is-current" : ""}`}
+                href={demo.href}
+                key={demo.id}
+              >
+                <span>
+                  <small>{demo.id}</small>
+                  <strong>{demo.title}</strong>
+                </span>
+                <span className="demo-link-meta">
+                  {demo.meta}
+                  <b>{index === 0 ? "CURRENT" : "OPEN"} →</b>
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
       </section>
 
       <div className="evidence-stack" aria-hidden="true">
