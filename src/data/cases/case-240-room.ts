@@ -67,6 +67,7 @@ export type Room240Scene = {
   }>;
   recordLines?: string[];
   evidenceClueIds?: string[];
+  imageIds?: string[];
   gainedClueIds?: string[];
   conditionalGainedClues?: Array<{
     clueId: string;
@@ -717,6 +718,7 @@ export const scenes: Room240Scene[] = [
       { sender: "未知号码", role: "incoming", text: "不要来240号房。", meta: "02:13" },
       { sender: "系统", role: "system", text: "消息已撤回", withdrawn: true },
     ],
+    imageIds: ["IMG_001"],
     truthReward: 5,
     choices: [
       choice("SCENE_001_A", "查询电话号码", "你把号码复制进白港通讯查询页。", "SCENE_001A"),
@@ -815,6 +817,7 @@ export const scenes: Room240Scene[] = [
       "白塔公寓大厅灯光昏暗。夜班保安抬头看向你，胸牌写着：林知远。",
       "“这么晚，你找谁？”",
     ],
+    imageIds: ["IMG_002"],
     conditionalParagraphs: [
       {
         requiresClueIds: ["CLUE_001"],
@@ -842,6 +845,7 @@ export const scenes: Room240Scene[] = [
       "“这里没有240。”",
       "他说话时，眼神却看向电梯方向。",
     ],
+    imageIds: ["IMG_002"],
     gainedClueIds: ["CLUE_A11"],
     choices: [
       choice("SCENE_001C_1_A", "继续追问", "你要求他拿监控证明。", "SCENE_001C_3"),
@@ -862,6 +866,7 @@ export const scenes: Room240Scene[] = [
       "你描述监控截图中的人。林知远立刻回答：“没见过。”",
       "他回答得太快，快得像提前准备过。",
     ],
+    imageIds: ["IMG_002"],
     gainedClueIds: ["CLUE_A12"],
     choices: [
       choice("SCENE_001C_2_A", "要求查看监控", "你把话题转向昨晚23:57。", "SCENE_001C_3"),
@@ -1214,6 +1219,7 @@ export const scenes: Room240Scene[] = [
     paragraphs: [
       "电梯门打开。2401、2402、2403、2404。走廊尽头的墙面比周围新，消防门半掩着。",
     ],
+    imageIds: ["IMG_002", "IMG_003"],
     conditionalParagraphs: [
       {
         excludesClueIds: ["CLUE_002"],
@@ -1345,6 +1351,7 @@ export const scenes: Room240Scene[] = [
       "24_。最后一位不像数字，更像被刻意抹掉的分隔符。",
       "消防门后传来一声闷响。",
     ],
+    imageIds: ["IMG_004"],
     evidenceClueIds: ["CLUE_007"],
     gainedClueIds: ["CLUE_007"],
     truthReward: 9,
@@ -1393,6 +1400,7 @@ export const scenes: Room240Scene[] = [
       "照片自动对比旧墙面色差。",
       "系统识别：此处曾安装金属牌，可能尺寸20cm × 8cm。",
     ],
+    imageIds: ["IMG_004"],
     evidenceClueIds: ["CLUE_A19"],
     gainedClueIds: ["CLUE_A19"],
     truthReward: 8,
@@ -1431,6 +1439,7 @@ export const scenes: Room240Scene[] = [
       "楼梯平台上放着一个黑色文件袋，标签写着：WH-24-0。",
       "结构图显示2404之后还有一块“24-0测试空间”；封闭施工申请要求删除公开记录，批准人赵宏。",
     ],
+    imageIds: ["IMG_005"],
     recordLines: [
       "24层结构图 / 2404后方：24-0测试空间",
       "施工申请 / 封闭24-0区域",
@@ -1514,6 +1523,7 @@ export const scenes: Room240Scene[] = [
       "项目第63天，白港大学学生顾晨进入24-0，此后失踪。",
       "赵宏电脑弹出沈岚消息：别告诉他观察局的事。",
     ],
+    imageIds: ["IMG_006"],
     evidenceClueIds: ["CLUE_009"],
     gainedClueIds: ["CLUE_009"],
     truthReward: 10,
@@ -1580,6 +1590,7 @@ export const scenes: Room240Scene[] = [
       "当前失踪学生发现残留数据后，是主动进入24-0的。",
       "沈岚递来一张自拍：失踪学生站在入口前，背后还有三年前失踪的顾晨。",
     ],
+    imageIds: ["IMG_007"],
     conditionalParagraphs: [
       {
         requiresVisitedSceneIds: ["SCENE_008A"],
@@ -1641,6 +1652,7 @@ export const scenes: Room240Scene[] = [
       "WH-A-024显示，顾晨三年来出现在海湾区地铁站、旧城区钟楼、工业港仓库与白港大学图书馆。",
       "每一张画面里的他，都和失踪那天一样年轻。",
     ],
+    imageIds: ["IMG_008"],
     evidenceClueIds: ["CLUE_010"],
     gainedClueIds: ["CLUE_010"],
     truthReward: 4,

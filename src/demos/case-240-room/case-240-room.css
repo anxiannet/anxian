@@ -257,6 +257,183 @@
   font-weight: 500;
 }
 
+.r240-scene-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.r240-scene-images:has(> :only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.r240-scene-image-card {
+  overflow: hidden;
+  border: 1px solid var(--r240-line);
+  background: #080f16;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.r240-scene-image-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 15px;
+}
+
+.r240-scene-image-card > header small {
+  color: var(--r240-blue);
+  font: 8px/1.4 "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 0.12em;
+}
+
+.r240-scene-image-card > header h3 {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.r240-scene-image-card > header button {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border: 1px solid var(--r240-line);
+  background: transparent;
+  color: var(--r240-muted);
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.r240-scene-image-frame {
+  position: relative;
+  min-height: 360px;
+  max-height: 580px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(116, 201, 232, 0.12), transparent 32%),
+    #070d13;
+}
+
+.r240-scene-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  max-height: 580px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 300ms ease;
+}
+
+.r240-scene-image-card.is-expanded .r240-scene-image-frame,
+.r240-scene-image-card.is-expanded .r240-scene-image-frame img {
+  max-height: 820px;
+}
+
+.r240-scene-image-card.is-expanded .r240-scene-image-frame img {
+  transform: scale(1.015);
+}
+
+.r240-dialogue-subtitle {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.58);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+.r240-dialogue-subtitle strong {
+  flex: 0 0 auto;
+  color: #d9f8f1;
+  font-weight: 700;
+}
+
+.r240-image-fallback {
+  display: flex;
+  min-height: 420px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px 80px;
+  text-align: center;
+}
+
+.r240-image-fallback > span {
+  color: var(--r240-blue);
+  font: 9px/1.4 "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 0.15em;
+}
+
+.r240-image-fallback > strong {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.r240-image-fallback > p {
+  max-width: 440px;
+  color: var(--r240-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.r240-image-fallback details {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 16px;
+  color: var(--r240-muted);
+  font-size: 10px;
+  text-align: left;
+}
+
+.r240-image-fallback summary {
+  cursor: pointer;
+  text-align: center;
+}
+
+.r240-image-fallback code {
+  display: block;
+  max-height: 140px;
+  margin-top: 10px;
+  padding: 12px;
+  overflow: auto;
+  border: 1px solid var(--r240-line);
+  background: rgba(0, 0, 0, 0.22);
+  color: #9fb1bc;
+  font: 9px/1.7 "SFMono-Regular", Consolas, monospace;
+  white-space: normal;
+}
+
+.r240-scene-image-detail {
+  padding: 13px 15px 15px;
+  border-top: 1px solid var(--r240-line);
+}
+
+.r240-scene-image-detail p {
+  margin: 0;
+  color: #b7c5cc;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.r240-scene-image-detail small {
+  display: block;
+  margin-top: 7px;
+  color: var(--r240-muted);
+  font-size: 9px;
+}
+
 .r240-phone {
   width: min(100%, 430px);
   margin: 0 auto 28px;
@@ -1209,9 +1386,24 @@
   }
 
   .r240-evidence-list,
+  .r240-scene-images,
   .r240-choice-grid,
   .r240-all-clues {
     grid-template-columns: 1fr;
+  }
+
+  .r240-scene-image-frame,
+  .r240-scene-image-frame img {
+    min-height: 430px;
+    max-height: 70svh;
+  }
+
+  .r240-dialogue-subtitle {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+    padding: 11px 12px;
+    font-size: 13px;
   }
 
   .r240-choice-grid button {

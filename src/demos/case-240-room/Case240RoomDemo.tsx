@@ -8,6 +8,8 @@ import {
   type Room240Evidence,
   type Room240Scene,
 } from "../../data/cases/case-240-room";
+import { case240RoomImagesById } from "../../data/cases/case-240-room-images";
+import { CaseImageWithDialogue } from "./CaseImageWithDialogue";
 import "./case-240-room.css";
 
 const sceneTypes = {
@@ -138,6 +140,9 @@ export function Case240RoomDemo() {
   const visibleEvidence = (scene.evidenceClueIds ?? [])
     .map((id) => clues.find((clue) => clue.id === id))
     .filter((clue): clue is Room240Clue => Boolean(clue?.evidence));
+  const sceneImages = (scene.imageIds ?? [])
+    .map((imageId) => case240RoomImagesById[imageId])
+    .filter(Boolean);
   const currentNoticeId = noticeQueue[0];
   const currentNotice = clues.find((clue) => clue.id === currentNoticeId);
   const isEnding = scene.uiType === "ending";
@@ -309,6 +314,14 @@ export function Case240RoomDemo() {
               {lastProgressGain.truth > 0 && <b>真相 +{lastProgressGain.truth}</b>}
               {lastProgressGain.hidden > 0 && <b>隐藏真相 +{lastProgressGain.hidden}</b>}
             </div>
+          )}
+
+          {sceneImages.length > 0 && (
+            <section className="r240-scene-images" aria-label="场景照片">
+              {sceneImages.map((image) => (
+                <CaseImageWithDialogue image={image} key={image.imageId} />
+              ))}
+            </section>
           )}
 
           <article className={`r240-scene-card r240-scene-${scene.uiType}`}>
